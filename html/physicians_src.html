@@ -1,0 +1,17 @@
+<html>
+<head>
+<script src="../js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script src="../js/LHINLookup.js" type="text/javascript"></script>
+</head>
+
+<body style = "font-family: Arial, Helvetica, sans-serif">
+
+Enter Your Postal Code:
+<input id="postalcode" name="postalcode" style="width: 102px; height: 22px; padding: 0px;">
+<input style="width: 50px; height: 22px;" type="button" value="Find" onclick="LHIN.PostalViewModel.lookup(postalcode.value );">
+<div id="LHINresult" style="height: 40px;">&nbsp;</div>
+
+<table></table>
+
+</body>
+</html>
