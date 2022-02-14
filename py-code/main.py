@@ -88,9 +88,7 @@ def generate_hsl_from_rank(rank):
     return l
 
 def generate_html_table(df_values, df_rank):
-    head = ('<html>\n'
-            '<body style = "font-family: Arial, Helvetica, sans-serif">\n'
-            '<table style="width:100%;text-align:left;border-collapse: collapse;">\n')
+    head = ('<table style="width:100%;text-align:left;border-collapse: collapse;">\n')
     tr1 = '<tr>\n'
     for x in df_values.columns:
         if 'Specialty of Practice' in x:
@@ -145,13 +143,16 @@ def generate_html_table(df_values, df_rank):
             tr_v = tr_v + '<td style="background-color:hsl(120, 50%, ' + str(color) + '%);'+ border_style+font+total_style+'">' \
                    + str(value) + '</td>\n'
         tr_v = tr_v + '</tr>\n'
-    trail = ('</table>\n'
-             '</body>\n'
-             '</html>\n')
+    trail = ('</table>\n')
 
-    html = head + tr1 + tr + tr_v + trail
+    html_table = head + tr1 + tr + tr_v + trail
+    file_src = open('../html/physicians_src.html','r')
+    html_src = file_src.read()
+    html_trg = html_src.replace('<table></table>',html_table)
+
+    file_src.close()
     file = open('../html/physicians.html','w')
-    file.write(html)
+    file.write(html_trg)
     file.close()
 
 
