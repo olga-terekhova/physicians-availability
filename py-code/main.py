@@ -1,7 +1,8 @@
 
 import tabula
 import pandas
-
+import xml.etree.ElementTree as ET
+import re
 
 
 
@@ -83,6 +84,17 @@ def assign_rank(df, df_rank_name):
     df = pandas.concat([df.iloc[:,0],df_pop_list[rank_list]], axis=1)
     df.to_csv('../data/'+ df_rank_name + '.csv', index=False)
 
+def generate_hex_from_rank(h,s,rank):
+    import colorsys
+    l = int((1 - rank/2) * 100)
+    rgb = colorsys.hls_to_rgb(h/360, l/100, s/100)
+    r = int(rgb[0] * 255)
+    g = int(rgb[1] * 255)
+    b = int(rgb[2] * 255)
+    rgb_str = str(r)+' '+ str(g) + ' ' + str(b)
+    hex_str = '#%02x%02x%02x' % (r, g, b)
+    return hex_str
+
 def generate_hsl_from_rank(rank):
     l = int((1 - rank/2) * 100)
     return l
@@ -155,13 +167,100 @@ def generate_html_table(df_values, df_rank):
     file.write(html_trg)
     file.close()
 
+def getLHIN_number(svg_name):
+    if 'LHIN' in svg_name:
+        if svg_name.find('_') < 0:
+            LHIN_number = int(svg_name[4:])
+        else:
+            LHIN_number = int(svg_name[4:svg_name.find('_'):])
+    else:
+        LHIN_number = 0
+    return LHIN_number
+
+def get_label_of_element(element):
+    if "{http://www.inkscape.org/namespaces/inkscape}label" in element.attrib:
+        return element.attrib["{http://www.inkscape.org/namespaces/inkscape}label"]
+    else:
+        return ''
+
+def path_is_LHIN(element):
+    if 'LHIN' in get_label_of_element(element):
+        return True
+    else:
+        return False
+
+def get_grand_total_rank_series(df_rank):
+    df_grand_total_rank = df_rank.loc[df_rank['Specialty of Practice'] == 'Grand Total']
+    df_grand_total_rank = df_grand_total_rank.iloc[:,1:15]
+    #print(df_grand_total_rank)
+    return df_grand_total_rank
+
+def get_rank_of_lhin_element(element, df_series_rank):
+    return df_series_rank.iloc[0, getLHIN_number(get_label_of_element(element)) - 1]
+
+def get_rank_by_lhin_number(number,df_series_rank):
+    return df_series_rank.iloc[0,number - 1]
+
+
+def replace_fill_color(line, hex):
+    #line = 'style="fill:#40bf40;fill-opacity:1;stroke:#000000;stroke-opacity:1"'
+    line_pos = line.find('fill:#')+6
+    #print(line)
+    #print(line[line_pos:line_pos+6])
+    new_line = line[0:line_pos-1] + hex + line[line_pos+6:]
+    return new_line
+
+def replace_stroke_color(line, hex):
+    #line = 'style="fill:#40bf40;fill-opacity:1;stroke:#000000;stroke-opacity:1"'
+    line_pos = line.find('stroke:#')+8
+    #print(line)
+    #print(line[line_pos:line_pos+6])
+    new_line = line[0:line_pos-1] + hex + line[line_pos+6:]
+    return new_line
+
+def process_svg(current,df_rank):
+    from cairosvg import svg2png
+
+    tree = ET.parse('../pic/ontario-lhins-map-final.svg')
+    root = tree.getroot()
+    all_elements = list(tree.iter('{http://www.w3.org/2000/svg}path'))
+
+    df_grant_total_rank = get_grand_total_rank_series(df_rank)
+    for element in all_elements:
+        if path_is_LHIN(element):
+            #check whether is current -> update border
+            if getLHIN_number(get_label_of_element(element)) == current:
+                element.attrib["style"] = replace_stroke_color(element.attrib["style"],'#000000')
+            else:
+                element.attrib["style"] = replace_stroke_color(element.attrib["style"], '#999999')
+            #assign rank -> fill color:
+            l = get_rank_of_lhin_element(element,df_grant_total_rank)
+            hex = generate_hex_from_rank(120,50,l)
+            element.attrib["style"] = replace_fill_color(element.attrib["style"],hex)
+    tree_bytes = ET.tostring(root, encoding='utf8', method='xml')
+    svg2png(bytestring=tree_bytes, write_to='../pic/ontario-lhins-map-gtranked'+str(current)+'.png')
+    #tree.write('../pic/ontario-lhins-map-gtranked.svg')
+
+
+def generate_png_for_all_current(df_rank):
+    for i in range(15):
+        process_svg(i, df_rank)
+
+# Main
 
 filepath = '../data/2020-PIO-Annual-Report.pdf'
 df_values_name = 'df_values_2020'
 df_rank_name = 'df_rank_2020'
 
-extract_table(filepath,df_values_name)
-df = pandas.read_csv('../data/' + df_values_name + '.csv')
-assign_rank (df, df_rank_name)
+
+
+#extract_table(filepath,df_values_name)
+#df = pandas.read_csv('../data/' + df_values_name + '.csv')
+#assign_rank (df, df_rank_name)
 df_rank = pandas.read_csv('../data/' + df_rank_name + '.csv')
-generate_html_table(df,df_rank)
+#generate_html_table(df,df_rank)
+
+
+generate_png_for_all_current(df_rank)
+
+
