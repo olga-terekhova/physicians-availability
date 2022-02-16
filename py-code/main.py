@@ -254,11 +254,11 @@ df_rank_name = 'df_rank_2020'
 
 
 
-#extract_table(filepath,df_values_name)
-#df = pandas.read_csv('../data/' + df_values_name + '.csv')
-#assign_rank (df, df_rank_name)
+extract_table(filepath,df_values_name)
+df = pandas.read_csv('../data/' + df_values_name + '.csv')
+assign_rank (df, df_rank_name)
 df_rank = pandas.read_csv('../data/' + df_rank_name + '.csv')
-#generate_html_table(df,df_rank)
+generate_html_table(df,df_rank)
 
 
 generate_png_for_all_current(df_rank)

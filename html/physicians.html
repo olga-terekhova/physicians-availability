@@ -3,14 +3,46 @@
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <script src="../js/jquery-1.10.1.min.js" type="text/javascript"></script>
 <script src="../js/LHINLookup.js" type="text/javascript"></script>
+<script src="../js/LHINSelect.js" type="text/javascript"></script>
 </head>
 
 <body style = "font-family: Arial, Helvetica, sans-serif">
 
+<table style="width:100%;text-align:left;border-collapse: collapse;">
+<tr>
+<td>
+<div onclick="selectLHIN(0)">All LHINs in Ontario:</div>
+<div onclick="selectLHIN(1)">&nbsp;1 - Erie St. Clair</div>
+<div onclick="selectLHIN(2)">&nbsp;2 - South West</div>
+<div onclick="selectLHIN(3)">&nbsp;3 - Waterloo Wellington</div>
+<div onclick="selectLHIN(4)">&nbsp;4 - Hamilton Niagara Haldimand Brant</div>
+<div onclick="selectLHIN(5)">&nbsp;5 - Central West</div>
+<div onclick="selectLHIN(6)">&nbsp;6 - Mississauga Halton</div>
+<div onclick="selectLHIN(7)">&nbsp;7 - Toronto Central</div>
+<div onclick="selectLHIN(8)">&nbsp;8 - Central</div>
+<div onclick="selectLHIN(9)">&nbsp;9 - Central East</div>
+<div onclick="selectLHIN(10)">&nbsp;10 - South East</div>
+<div onclick="selectLHIN(11)">&nbsp;11 - Champlain</div>
+<div onclick="selectLHIN(12)">&nbsp;12 - North Simcoe Muskoka</div>
+<div onclick="selectLHIN(13)">&nbsp;13 - North East</div>
+<div onclick="selectLHIN(14)">&nbsp;14 - North West</div>
+<div>&nbsp;</div>
 Enter Your Postal Code:
 <input id="postalcode" name="postalcode" style="width: 102px; height: 22px; padding: 0px;">
 <input style="width: 50px; height: 22px;" type="button" value="Find" onclick="LHIN.PostalViewModel.lookup(postalcode.value );">
 <div id="LHINresult" style="height: 40px;">&nbsp;</div>
+
+</td>
+<td>
+<img id="LHINmap" src="../pic/ontario-lhins-map-gtranked0.png">
+</td>
+ 
+
+</tr>
+
+</table>
+
+<div id="currentLHIN>" style = "visibility:hidden;">&nbsp;</div>
 
 <table style="width:100%;text-align:left;border-collapse: collapse;">
 <tr>
