@@ -105,33 +105,36 @@ def generate_html_table(df_values, df_rank):
     i = 0
     for x in df_values.columns:
         if 'Specialty of Practice' in x:
-            border_style ='border-top:solid;border-bottom:solid;border-right:solid;'
+            border_style ='border-top:1px solid;border-bottom:1px solid;border-right:1px solid;'
             tr1 = tr1 + '<th style = "' + border_style + '" rowspan = "2">' + x + '</th>\n'
             i=i+1
         elif 'Physician Count' in x:
-            border_style = 'border-top:solid;border-bottom:solid;border-right:solid'
+            border_style = 'border-top:1px solid;border-bottom:1px solid;border-right:1px solid'
             tr1 = tr1 + '<th name = "LHINhead'+str(i)+'" style = "' + border_style + '" colspan = "2">' + x[0:x.find(' - '):] + '</th>\n'
             i=i+1
     tr1 = tr1 + '</tr>\n'
     tr = '<tr>\n'
-    i = 0
+    i = 1
+    j = 1
     for x in df_values.columns:
         if 'Physician Count' in x:
-            border_style = 'border-top:solid;border-bottom:solid;border-left: solid;border-right:1px solid #777777;'
+            border_style = 'border-top:1px solid;border-bottom:1px solid;border-left:1px solid;border-right:1px solid #777777;'
             tr = tr + '<th name = "LHINleft'+str(i)+'" style = "' + border_style + '">' + x[x.find(' - ')+3:] + '</th>\n'
+            i = i+1
         elif 'Phys per 100,000 Population' in x:
-            border_style = 'border-top:solid;border-bottom:solid;border-right: solid;'
-            tr = tr + '<th name = "LHINright'+str(i)+'" style = "' + border_style + '">' + x[x.find(' - ')+3:] + '</th>\n'
+            border_style = 'border-top:1px solid;border-bottom:1px solid;border-right:1px solid;'
+            tr = tr + '<th name = "LHINright'+str(j)+'" style = "' + border_style + '">' + x[x.find(' - ')+3:] + '</th>\n'
+            j = j+1
         else:
-            border_style = 'border-top:solid;border-bottom:solid;'
-        i = i+1
+            border_style = 'border-top:1px solid;border-bottom:1px solid;'
     tr = tr + '</tr>\n'
     tr_v = ''
 
     for rowIndex, row in df_values.iterrows():
         total = False
         tr_v = tr_v + '<tr style="border-bottom: 1px solid #777777 ">\n'
-        i = 0
+        i = 1
+        j = 1
         for columnIndex, value in row.items():
             curr_row = rowIndex
             if ' - ' in columnIndex:
@@ -141,11 +144,13 @@ def generate_html_table(df_values, df_rank):
             else:
                 color = generate_hsl_from_rank(0)
             if 'Physician Count' in columnIndex:
-                border_style = 'border-left: solid;border-right:1px solid #777777;'
+                border_style = 'border-left:1px solid;border-right:1px solid #777777;'
                 name_cell = 'LHINleft'+str(i)
+                i = i+1
             elif 'Phys per 100,000 Population' in columnIndex:
-                border_style = 'border-right: solid;border-left:1px solid #777777;'
-                name_cell = 'LHINright' + str(i)
+                border_style = 'border-right:1px solid;border-left:1px solid #777777;'
+                name_cell = 'LHINright' + str(j)
+                j = j+1
             else:
                 border_style = ''
                 name_cell=''
@@ -163,7 +168,7 @@ def generate_html_table(df_values, df_rank):
                 total_style = ''
             tr_v = tr_v + '<td name = "'+name_cell +'" style="background-color:hsl(120, 50%, ' + str(color) + '%);'+ border_style+font+total_style+'">' \
                    + str(value) + '</td>\n'
-            i = i+1
+
         tr_v = tr_v + '</tr>\n'
     trail = ('</table>\n')
 
