@@ -106,7 +106,7 @@ def generate_html_table(df_values, df_rank):
     for x in df_values.columns:
         if 'Specialty of Practice' in x:
             border_style ='border-top:1px solid;border-bottom:1px solid;border-right:1px solid;'
-            tr1 = tr1 + '<th style = "' + border_style + '" rowspan = "2">' + x + '</th>\n'
+            tr1 = tr1 + '<th name = "Specialty of Practice" style = "' + border_style + '" rowspan = "2">' + x + '</th>\n'
             i=i+1
         elif 'Physician Count' in x:
             border_style = 'border-top:1px solid;border-bottom:1px solid;border-right:1px solid'
