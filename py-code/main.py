@@ -100,7 +100,7 @@ def generate_hsl_from_rank(rank):
     return l
 
 def generate_html_table(df_values, df_rank):
-    head = ('<table style="width:100%;text-align:left;border-collapse: collapse;">\n')
+    head = ('<table style="width:100%;text-align:left;border-collapse: collapse;font-size:12px;">\n')
     tr1 = '<tr>\n'
     i = 0
     for x in df_values.columns:
