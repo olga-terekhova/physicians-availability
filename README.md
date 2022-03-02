@@ -1,6 +1,6 @@
 # physicians-availability
 ## the goal of the project
-I want to visualize data about the number of physicians in Ontario per area. The source data is provided by Ontario Physician Human Resources Data Centre. The result should clearly show which geographical area has more or less physicians per 100 000 population. 
+I want to visualize data about the number of physicians in Ontario per area. The source data is provided by Ontario Physician Human Resources Data Centre. The result should clearly show which geographical area has more or less physicians per 100 000 population. The result is hosted at https://olga-terekhova.github.io/html/physicians.html .
 ## flow chart of the project
 ![flow chart of the project](https://github.com/olga-terekhova/physicians-availability/blob/main/docs/diagram.png)
 ## description of the flows
