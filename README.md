@@ -87,12 +87,7 @@ Outcome:
 ### 6 - Showing the end result as a dynamic HTML page
 Source:
 1. HTML file (https://github.com/olga-terekhova/physicians-availability/blob/main/html/physicians.html)
-2. JS files:
-   - jquery (https://github.com/olga-terekhova/physicians-availability/blob/main/js/jquery-1.10.1.min.js)
-   - JS file performing an API call to find a LHIN by a postal code (https://github.com/olga-terekhova/physicians-availability/blob/main/js/LHINLookup.js)
-   - JS file processing a selection of an LHIN on the page (https://github.com/olga-terekhova/physicians-availability/blob/main/js/LHINLookup.js)
-3. 15 png files with LHIN maps
-4. An existing API at http://healthcareathome.ca that takes a postal code and returns an LHIN code.
+2. 15 png files with LHIN maps
 
 Outcome:
 1. A dynamic HTML page (https://olga-terekhova.github.io/html/physicians.html) with following functionality:
