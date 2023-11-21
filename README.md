@@ -35,6 +35,7 @@ Python code:
    - Assigns a rank for each LHIN within this row calculated according to the formula: (current LHIN value - min value) / (max value - min value), so that the rank ranges from 0 to 1.
    - Saves the result for the current row into cells labeled as "Name of the LHIN" + " - Rank". 
    - Writes the resulting dataset into a CSV.
+
 Dependencies: 
 1. pandas.
 
