@@ -11,12 +11,13 @@ Source:
 Python code:  
 1. The function extract_table:
    - Takes the source pdf
-   - Parses two pages with the needed table
+   - Parses two pages with the needed table ("Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020" on pages 45-46)  
    - Splits it by dividers
    - Loads it into pandas dataframe
    - Assigns labels
-   - loads the data into a csv file. 
-Dependencies: 
+   - Loads the data into a csv file.
+  
+Dependencies:  
 1. tabula-py and java runtime used by tabula-py under the hood to parse a PDF into a table. 
 2. pandas.
 
