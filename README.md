@@ -2,11 +2,11 @@
 ## Overview
 When we discuss availability of health care in Ontario, we sometimes wonder: is it more available in big cities?  
 
-There are more health care professionals in big cities, so maybe the access is easier.
-But the population is bigger too, so maybe the access is harder.  
+There are more health care professionals in big cities, so maybe the access is easier.  
+But the population is bigger too, so maybe the access is harder?    
 
-Both suggestions sound plausible, so let's look in the data.
-We need to compare a ratio between the number of health care professionals and the population broken down by regions. 
+Both suggestions sound plausible, so let's look in the data.  
+We need to compare a ratio between the number of health care professionals and the population broken down by regions.  
 
 I want to visualize data about the number of physicians in Ontario per area. The source data is provided by Ontario Physician Human Resources Data Centre. The result should clearly show which geographical area has more or less physicians per 100 000 population. The result is hosted at https://olga-terekhova.github.io/html/physicians.html .
 ## flow chart of the project
