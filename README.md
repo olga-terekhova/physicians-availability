@@ -53,16 +53,16 @@ The Python code with main functionality is in [main.py](py-code/main.py).
 #### Run:  
 Run the [main.py](py-code/main.py).  
 The outputs:
-- the resulted HTML page [physicians.html](physicians.html), which now has cells populated with data
+- the resulted HTML page [physicians.html](html/physicians.html), which now has cells populated with data
 - PNG files for the map in the [pic](pic/) folder, where shapes for LHINs are colored according to ranking and highlighted according to the selected LHIN
 
 #### Share:  
 Publish the following files preserving folder hierarchy:
 - html/physicians.html
 - js/*
-- pics/*
+- pic/*
 
-The resulted HTML page [physicians.html](physicians.html) should not be edited directly. It is generated using the script [main.py](py-code/main.py).  
+The resulted HTML page [physicians.html](html/physicians.html) should not be edited directly. It is generated using the script [main.py](py-code/main.py).  
 The script [main.py](py-code/main.py) also colors the areas of LHINs on a map in the file  and outputs PNG files in the [pic](pic/) folder.
 
 #### Retired functionality:  
