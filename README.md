@@ -6,7 +6,10 @@ There are more health care professionals in big cities, so maybe the access is e
 But the population is bigger too, so maybe the access is harder?    
 
 Both suggestions sound plausible, so let's look in the data.  
-We need to compare a ratio between the number of health care professionals and the population broken down by regions. 
+We need to compare a ratio between the number of health care professionals and the population broken down by regions.  
+
+Like this:  
+<img src="docs/phys-viz-draft.png" width="312">
 
 ### Sourcing the data 
 I use the 2020 annual report from Ontario Physician Human Resources Data Centre. It has a table "Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020" which has a relevant pre-calculated attribute "Phys per 100,000 Population". Note that the title of the table and the name of the attribute have inverse meaning. I prioritize the attribute here. So the larger the number, the better is the availability (more doctors per patients).   
@@ -31,8 +34,10 @@ The HTML page lets the user to choose a LHIN from a list, which automatically hi
 
 A user can also click on the tile of LHIN column which highlights this LHIN on the map.  
 
-The result clearly shows which geographical area has more or less physicians per 100 000 population. 
-The result is hosted at https://olga-terekhova.github.io/html/physicians.html .
+The result clearly shows which geographical area has more or less physicians per 100 000 population.  
+The result is hosted at https://olga-terekhova.github.io/html/physicians.html and looks like this:  
+<img src="docs/phys-viz-result.png" width="713">
+
 
 ### Installation
 #### Prepare source files:
