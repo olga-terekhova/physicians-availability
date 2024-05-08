@@ -5,14 +5,16 @@ When we discuss availability of health care in Ontario, we sometimes wonder: is 
 There are more health care professionals in big cities, so maybe the access is easier.  
 But the population is bigger too, so maybe the access is harder?    
 
-Both suggestions sound plausible, so let's look in the data.  
-We need to compare a ratio between the number of health care professionals and the population broken down by regions.  
+Both suggestions sound plausible, so let's look at the data.  
+We need to compare a ratio between the number of health care professionals and the population broken down by regions, like this:  
 
-Like this:  
 <img src="docs/phys-viz-draft.png" width="312">
 
 ### Sourcing the data 
-I use the 2020 annual report from Ontario Physician Human Resources Data Centre. It has a table "Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020" which has a relevant pre-calculated attribute "Phys per 100,000 Population". Note that the title of the table and the name of the attribute have inverse meaning. I prioritize the attribute here. So the larger the number, the better is the availability (more doctors per patients).   
+I use the 2020 annual report from Ontario Physician Human Resources Data Centre.  
+It has a table "Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020", which has a relevant pre-calculated attribute "Phys per 100,000 Population".  
+Note that the title of the table and the name of the attribute have inverse meaning.  
+I rely on the wording of the attribute name, which means that the larger the value, the better is the availability (more doctors per patients).   
 
 LHINs are a way to divide Ontario into regions in the context of healthcare. This term was current in 2020, but it will be superceded by Ontario Health Regions.   
 To have a way to see LHINs on a map, I vectorized a map of LHINs, assigned LHINs identifiers to corresponding shapes, and saved it as an SVG. 
@@ -36,6 +38,7 @@ A user can also click on the tile of LHIN column which highlights this LHIN on t
 
 The result clearly shows which geographical area has more or less physicians per 100 000 population.  
 The result is hosted at https://olga-terekhova.github.io/html/physicians.html and looks like this:  
+
 <img src="docs/phys-viz-result.png" width="713">
 
 
@@ -62,6 +65,8 @@ Publish the following files preserving folder hierarchy:
 The resulted HTML page [physicians.html](physicians.html) should not be edited directly. It is generated using the script [main.py](py-code/main.py).  
 The script [main.py](py-code/main.py) also colors the areas of LHINs on a map in the file  and outputs PNG files in the [pic](pic/) folder.
 
+#### Retired functionality:  
+Previous versions of the page included an option to get a LHIN by a postal code. After Ontario Health redesigned this API, it's no longer functional.  
 
  
 ## Detailed flow chart of the project
