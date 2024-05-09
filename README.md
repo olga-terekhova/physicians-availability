@@ -6,7 +6,7 @@ There are more health care professionals in big cities, so maybe the access is *
 But the population is bigger too, so maybe the access is **harder**?    
 
 Both suggestions sound plausible, so let's look at the data.  
-We need to compare a **ratio** between the number of health care professionals and the population broken down by **regions**, like this:  
+We need to compare a **ratio** between the number of healthcare professionals and the population broken down by **regions**, like this:  
 
 <img src="docs/phys-viz-draft.png" width="312">
 
@@ -14,7 +14,7 @@ We need to compare a **ratio** between the number of health care professionals a
 I use the 2020 annual report from Ontario Physician Human Resources Data Centre.  
 It has a table "Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020", which has a relevant pre-calculated attribute **"Phys per 100,000 Population"**.  
 Note that the title of the table and the name of the attribute have inverse meanings.  
-I rely on the wording of the attribute name, which means that the larger the value, the better is the availability (more doctors per patients).  
+I rely on the wording of the attribute name, which means that the larger the value, the better is the availability (more physicians per patients).  
 **Ratios** are broken down by **LHINs** and **Specialty of Practice**. 
 
 **LHINs** are a way to divide Ontario into **regions** in the context of healthcare. This term was current in 2020, but it will be superceded by Ontario Health Regions.   
