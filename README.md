@@ -1,71 +1,74 @@
 # Availability of physicians in Ontario
 ## Overview
-When we discuss availability of health care in Ontario, we sometimes wonder: is it more available in big cities?  
+When we discuss availability of **healthcare** in Ontario, we sometimes wonder: is it more available in big cities?  
 
-There are more health care professionals in big cities, so maybe the access is easier.  
-But the population is bigger too, so maybe the access is harder?    
+There are more health care professionals in big cities, so maybe the access is **easier**.  
+But the population is bigger too, so maybe the access is **harder**?    
 
 Both suggestions sound plausible, so let's look at the data.  
-We need to compare a ratio between the number of health care professionals and the population broken down by regions, like this:  
+We need to compare a **ratio** between the number of health care professionals and the population broken down by **regions**, like this:  
 
 <img src="docs/phys-viz-draft.png" width="312">
 
 ### Sourcing the data 
 I use the 2020 annual report from Ontario Physician Human Resources Data Centre.  
-It has a table "Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020", which has a relevant pre-calculated attribute "Phys per 100,000 Population".  
+It has a table "Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020", which has a relevant pre-calculated attribute **"Phys per 100,000 Population"**.  
 Note that the title of the table and the name of the attribute have inverse meanings.  
-I rely on the wording of the attribute name, which means that the larger the value, the better is the availability (more doctors per patients).   
+I rely on the wording of the attribute name, which means that the larger the value, the better is the availability (more doctors per patients).  
+**Ratios** are broken down by **LHINs** and **Specialty of Practice**. 
 
-LHINs are a way to divide Ontario into regions in the context of healthcare. This term was current in 2020, but it will be superceded by Ontario Health Regions.   
+**LHINs** are a way to divide Ontario into **regions** in the context of healthcare. This term was current in 2020, but it will be superceded by Ontario Health Regions.   
 To have a way to see LHINs on a map, I vectorized a map of LHINs, assigned LHINs identifiers to corresponding shapes, and saved it as an SVG. 
 
 ### Data Preparation  
 I extract the needed table from the report and make a dataset out of it, where rows are for Specialties of Practice, and columns are for LHINs.
-For every Specialty of Practice I calculate a relative ranking from 0 to 1, where 0 would be assigned to a LHIN with the least ratio and 1 to the largest ratio.  
+For every Specialty of Practice I calculate a relative **ranking** from 0 to 1, where 0 would be assigned to a LHIN with the least ratio and 1 to the largest ratio.  
 This ranking is also calculated for the row Grand Total, which represents availability for all specialties altogether. Based on this ranking I calculate the colors for LHINs on the map. 
 
 ### Visualization  
-The dataset is visualized as an HTML table where:  
+The dataset is **visualized** as an HTML **table** where **availability** is coded with **color scales** using shades of green:  
 - LHINs with the best availability within a Specialty are marked with dark green
 - LHINs with the worst availability within a Specialty are marked with white
-- LHINs in between are marked with green of varying lightness according to their ranking
+- LHINs in between are on a gradient between dark green and white according to their ranking
 
-The LHINs are shown on a map of Ontario and their areas are filled by their ranking in the Grand Total. The darker the area, the better is the availability.  
+The LHINs are shown on a **map** of Ontario and their areas are **color coded** by their ranking in the Grand Total. The darker the area, the better is the availability.  
 
-The HTML page lets the user to choose a LHIN from a list, which automatically highlights the LHINs on the map and in the table. If the column for the selected LHINs is not visible, the page is automatically scrolled to bring that column into view. 
+**Interactive data exploration:**
+- The HTML page lets the user to choose a LHIN from a list, which **automatically highlights** the LHINs on the map and in the table. If the column for the selected LHINs is not visible, the page is **automatically scrolled** to bring that column into view.
+- A user can click on the tile of LHIN column which **automatically highlights** this LHIN on the map.  
 
-A user can also click on the tile of LHIN column which highlights this LHIN on the map.  
-
-The result clearly shows which geographical area has more or less physicians per 100 000 population.  
 The result is hosted at https://olga-terekhova.github.io/html/physicians.html and looks like this:  
 
 <img src="docs/phys-viz-result.png" width="713">
 
+### Analysis  
+The result clearly shows that LHIN 7 that contains Toronto, the biggest city of the province, has more physicians per 100 000 population than any other region.  
+The data doesn't have enough granularity to make definitive conclusions about cities in general, as all other cities are reported only as part of a larger region.  
+Ottawa is the second most populated city in Ontario. It is located in Champlain, LHIN 11, which also has the second best ratio of physicians per population.  
+This seems to support the hypothesis that **more populated areas have easier access to physicians**. 
 
-### Installation
-#### Prepare source files:
+
+## Installation
+### Prepare source files  
 The dataset PDF is in [2020-PIO-Annual-Report.pdf](data/2020-PIO-Annual-Report.pdf).
 The template for the HTML page is in [physicians_src.html](html/physicians_src.html). It is the source of all HTML elements excluding the cells of the dataset. 
 The JavaScript for the HTML page is in [LHINSelect.js](js/LHINSelect.js). 
 The map of LHINs is in [ontario-lhins-map-final.svg](pic/ontario-lhins-map-final.svg).  
 The Python code with main functionality is in [main.py](py-code/main.py).  
 
-#### Run:  
+### Run  
 Run the [main.py](py-code/main.py).  
 The outputs:
 - the resulted HTML page [physicians.html](html/physicians.html), which now has cells populated with data
 - PNG files for the map in the [pic](pic/) folder, where shapes for LHINs are colored according to ranking and highlighted according to the selected LHIN
 
-#### Share:  
+### Share  
 Publish the following files preserving folder hierarchy:
 - html/physicians.html
 - js/*
 - pic/*
 
-The resulted HTML page [physicians.html](html/physicians.html) should not be edited directly. It is generated using the script [main.py](py-code/main.py).  
-The script [main.py](py-code/main.py) also colors the areas of LHINs on a map in the file  and outputs PNG files in the [pic](pic/) folder.
-
-#### Retired functionality:  
+### Retired functionality   
 Previous versions of the page included an option to get a LHIN by a postal code. After Ontario Health redesigned this API, it's no longer functional.  
 
  
