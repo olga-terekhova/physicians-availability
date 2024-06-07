@@ -13,7 +13,10 @@ We need to compare a **ratio** between the number of healthcare professionals an
 ### Sourcing the data 
 I use the 2020 annual report from Ontario Physician Human Resources Data Centre.  
 It has a table "Population per Physician in ONTARIO by LHIN and Specialty of Practice in 2020", which has a relevant pre-calculated attribute **"Phys per 100,000 Population"**.  
-Note that the title of the table and the name of the attribute have inverse meanings.  
+
+<img src="docs/data-table.png" width="600">  
+
+Note that the title of the table and the name of the attribute have **inverse** meanings.  
 I rely on the wording of the attribute name, which means that the larger the value, the better is the availability (more physicians per patients).  
 **Ratios** are broken down by **LHINs** and **Specialty of Practice**. 
 
